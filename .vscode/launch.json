@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "Debug",
+          "type": "cppdbg",
+          "request": "launch",
+          // Resolved by CMake Tools:
+          "program": "${command:cmake.launchTargetPath}",
+          "args": [],
+          "stopAtEntry": false,
+          "cwd": "${workspaceFolder}",
+          "environment": [
+              {
+                  "name": "PATH",
+                  "value": "${env:PATH}:${command:cmake.getLaunchTargetDirectory}"
+              }
+          ],
+          "console": "externalTerminal",
+          "osx": {
+              "MIMode": "lldb"
+          },
+      }
+  ]
+}
