@@ -2,6 +2,12 @@
 
 Use this template to build a [raylib-cpp](https://github.com/RobLoach/raylib-cpp) project using [CMake](https://cmake.org).
 
+## Dependencies
+
+```
+brew install emscripten cmake ninja
+```
+
 ## Build
 
 To build this project, make sure to have CMake installed locally.
@@ -10,22 +16,22 @@ To build this project, make sure to have CMake installed locally.
 
 ```
 mkdir build
-cd build
-cmake ..
-make
+cmake -B ./build
+cmake --build ./build
 ```
 
 ### Web
 
 ```
 mkdir build
-cd build
-emcmake cmake .. -DPLATFORM=Web -DCMAKE_BUILD_TYPE=Release
-emmake make
+emcmake cmake -B ./build-web -DPLATFORM=Web -DCMAKE_BUILD_TYPE=Release
+cmake --build ./build-web
 ```
 
 ## Run
 
-```
-./raylib_gamejam_template
+```sh
+./build/raylib_gamejam_template
+- or -
+emrun ./build-web/raylib_gamejam_template.html
 ```
