@@ -14,6 +14,7 @@
 ********************************************************************************************/
 
 #include "raylib-cpp.hpp"
+#include <filesystem>
 
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
@@ -24,6 +25,7 @@
 //----------------------------------------------------------------------------------
 int screenWidth = 800;
 int screenHeight = 450;
+raylib::Texture2D logo;
 
 //----------------------------------------------------------------------------------
 // Module Functions Declaration
@@ -38,6 +40,12 @@ int main()
     // Initialization
     //--------------------------------------------------------------------------------------
     raylib::Window window(screenWidth, screenHeight, "raylib-cpp [core] example - basic window");
+
+    // Resources
+    //--------------------------------------------------------------------------------------
+    const std::filesystem::path appDir = GetApplicationDirectory();
+    logo = raylib::Texture2D(appDir / "resources" / "raylib_logo.png");
+
 
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop(UpdateDrawFrame, 0, 1);
@@ -71,7 +79,7 @@ void UpdateDrawFrame(void)
 
         ClearBackground(RAYWHITE);
 
-        DrawText("Congrats! You created your first raylib-cpp window!", 160, 200, 20, LIGHTGRAY);
+        DrawTexture(logo, screenWidth / 2 - logo.width / 2, screenHeight / 2 - logo.height / 2, WHITE);
 
     EndDrawing();
     //----------------------------------------------------------------------------------
