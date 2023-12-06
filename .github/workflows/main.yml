@@ -1,0 +1,36 @@
+name: "main"
+on: [push]
+
+env:
+  CMAKE_VERSION: '3.27.x'
+  EM_VERSION: 3.1.50
+  EM_CACHE_FOLDER: 'emsdk-cache'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup cache
+        id: cache-system-libraries
+        uses: actions/cache@v2
+        with:
+          path: ${{env.EM_CACHE_FOLDER}}
+          key: ${{env.EM_VERSION}}-${{ runner.os }}
+      - uses: jwlawson/actions-setup-cmake@v1.14
+        with:
+          cmake-version: ${{env.CMAKE_VERSION}}
+      - uses: mymindstorm/setup-emsdk@v13
+        with:
+          version: ${{env.EM_VERSION}}
+          actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
+      - name: Desktop - Cmake Build
+        run: |
+          mkdir build
+          emcmake cmake -B ./build -DCMAKE_BUILD_TYPE=Release
+          emcmake cmake --build ./build
+      - name: Web - Emscripten Build
+        run: |
+          mkdir build
+          emcmake cmake -B ./build-web -DPLATFORM=Web -DCMAKE_BUILD_TYPE=Release
+          emcmake cmake --build ./build-web
