@@ -7,10 +7,14 @@ env:
   EM_CACHE_FOLDER: 'emsdk-cache'
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+            sudo apt update
+            sudo apt install libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libxext-dev
       - name: Setup cache
         id: cache-system-libraries
         uses: actions/cache@v2
@@ -24,13 +28,8 @@ jobs:
         with:
           version: ${{env.EM_VERSION}}
           actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
-      - name: Desktop - Cmake Build
-        run: |
-          mkdir build
-          emcmake cmake -B ./build -DCMAKE_BUILD_TYPE=Release
-          emcmake cmake --build ./build
       - name: Web - Emscripten Build
         run: |
           mkdir build
-          emcmake cmake -B ./build-web -DPLATFORM=Web -DCMAKE_BUILD_TYPE=Release
-          emcmake cmake --build ./build-web
+          emcmake cmake -B ./build -DPLATFORM=Web -DCMAKE_BUILD_TYPE=Release
+          emcmake cmake --build ./build
