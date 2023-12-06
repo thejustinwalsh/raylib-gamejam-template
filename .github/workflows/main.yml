@@ -28,13 +28,13 @@ jobs:
         with:
           version: ${{env.EM_VERSION}}
           actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
-      - name: Desktop
+      - name: Build desktop
         run: |
           mkdir build
           cmake -B ./build -DCMAKE_BUILD_TYPE=Release
           cmake --build ./build
-      - name: Web
+      - name: Build web
         run: |
-          mkdir build
+          mkdir build-web
           emcmake cmake -B ./build-web -DPLATFORM=Web -DCMAKE_BUILD_TYPE=Release
           cmake --build ./build-web
