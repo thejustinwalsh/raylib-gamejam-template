@@ -43,8 +43,10 @@ cmake --build ./build-web
 ## Run
 
 ```sh
+# run desktop binary
 ./build/raylib_gamejam_template
-- or -
+
+# spin up a local web server and run the web game with emrun
 emrun ./build-web/raylib_gamejam_template.html
 ```
 
