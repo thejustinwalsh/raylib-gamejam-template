@@ -51,4 +51,4 @@ emrun ./build-web/raylib_gamejam_template.html
 <br/>
 <br/>
 
-*Forked from [raylib-cpp](https://github.com/RobLoach/raylib-cpp) examples by @RobLoach*
+*Forked from [raylib-cpp](https://github.com/RobLoach/raylib-cpp) examples by [@RobLoach](https://github.com/RobLoach)*
