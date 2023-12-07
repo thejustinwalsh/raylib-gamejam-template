@@ -46,18 +46,6 @@ if (NOT raylib_cpp_FOUND)
     FetchContent_MakeAvailable(raylib_cpp)
 endif()
 
-# raygui
-find_package(raygui QUIET)
-if (NOT raygui_FOUND)
-    include(FetchContent)
-    FetchContent_Declare(
-        raygui
-        GIT_REPOSITORY https://github.com/raysan5/raygui.git
-        GIT_TAG 4.0
-    )
-    FetchContent_MakeAvailable(raygui)
-endif()
-
 # This is the main part:
 file(GLOB SOURCES CONFIGURE_DEPENDS src/*.cpp src/*.h src/*.hpp)
 file(GLOB_RECURSE RESOURCES CONFIGURE_DEPENDS resources/*)
