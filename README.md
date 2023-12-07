@@ -5,11 +5,17 @@
 - [x] VSCode configuration and extension recommendations
 - [x] Github Actions CI for desktop and web
 
+*To get started, click the green `Use this template` button on the top of the repository page.*
+
+<br/>
+
 ## Dependencies
 
 ```
 brew install emscripten cmake ninja
 ```
+
+<br/>
 
 ## Build
 
@@ -29,8 +35,14 @@ emcmake cmake -B ./build-web -DPLATFORM=Web -DCMAKE_BUILD_TYPE=Release
 cmake --build ./build-web
 ```
 
-> [!TIP]
-> While iterating on your project setup and adding dependencies or resources sometimes cmake needs a hard reset. To do so, delete your `build` folder and run `cmake -B ./build` again.
+#### Notes
+
+- While iterating on your project setup and adding dependencies or resources sometimes cmake needs a hard reset.  
+- Resources that are removed from the `./resources` folder aren't removed from the build folder[^1], this has no effect on the resource bundeling, but you may accumulate resources that are no longer used.  
+- To reset your setup, delete your `./build` folder and run `cmake -B ./build` again.
+[^1]: Accepting pull requests
+
+<br/>
 
 ## Run
 
@@ -40,9 +52,7 @@ cmake --build ./build-web
 emrun ./build-web/raylib_gamejam_template.html
 ```
 
-
 <br/>
-
----  
+<br/>
 
 *Forked from [raylib-cpp](https://github.com/RobLoach/raylib-cpp) examples by @RobLoach*
