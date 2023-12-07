@@ -15,8 +15,6 @@
 brew install emscripten cmake ninja
 ```
 
-<br/>
-
 ## Build
 
 ### Desktop
@@ -41,8 +39,6 @@ cmake --build ./build-web
 - Resources that are removed from the `./resources` folder aren't removed from the build folder[^1], this has no effect on the resource bundeling, but you may accumulate resources that are no longer used.  
 - To reset your setup, delete your `./build` folder and run `cmake -B ./build` again.
 [^1]: Accepting pull requests
-
-<br/>
 
 ## Run
 
